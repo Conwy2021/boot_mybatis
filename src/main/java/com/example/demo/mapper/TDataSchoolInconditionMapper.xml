@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TDataSchoolInconditionMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.TDataSchoolIncondition" >
+    <id column="FID" property="fid" jdbcType="VARCHAR" />
+    <result column="FNAME" property="fname" jdbcType="VARCHAR" />
+    <result column="FSIMPLE_PINYIN" property="fsimplePinyin" jdbcType="VARCHAR" />
+    <result column="FCITY_ID" property="fcityId" jdbcType="VARCHAR" />
+    <result column="FAREA_ID" property="fareaId" jdbcType="VARCHAR" />
+    <result column="FIMAGEURL" property="fimageurl" jdbcType="VARCHAR" />
+    <result column="FCREATE_TIME" property="fcreateTime" jdbcType="TIMESTAMP" />
+    <result column="FUPDATE_TIME" property="fupdateTime" jdbcType="TIMESTAMP" />
+    <result column="FCREATE_OPERATOR_ID" property="fcreateOperatorId" jdbcType="VARCHAR" />
+    <result column="FUPDATE_OPERATOR_ID" property="fupdateOperatorId" jdbcType="VARCHAR" />
+    <result column="FDELETE" property="fdelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.bean.TDataSchoolIncondition" extends="BaseResultMap" >
+    <result column="FCONTENT" property="fcontent" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FID, FNAME, FSIMPLE_PINYIN, FCITY_ID, FAREA_ID, FIMAGEURL, FCREATE_TIME, FUPDATE_TIME, 
+    FCREATE_OPERATOR_ID, FUPDATE_OPERATOR_ID, FDELETE
+  </sql>
+  <sql id="Blob_Column_List" >
+    FCONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_DATA_SCHOOL_INCONDITION
+    where FID = #{fid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_DATA_SCHOOL_INCONDITION
+    where FID = #{fid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.bean.TDataSchoolIncondition" >
+    insert into T_DATA_SCHOOL_INCONDITION (FID, FNAME, FSIMPLE_PINYIN, 
+      FCITY_ID, FAREA_ID, FIMAGEURL, 
+      FCREATE_TIME, FUPDATE_TIME, FCREATE_OPERATOR_ID, 
+      FUPDATE_OPERATOR_ID, FDELETE, FCONTENT
+      )
+    values (#{fid,jdbcType=VARCHAR}, #{fname,jdbcType=VARCHAR}, #{fsimplePinyin,jdbcType=VARCHAR}, 
+      #{fcityId,jdbcType=VARCHAR}, #{fareaId,jdbcType=VARCHAR}, #{fimageurl,jdbcType=VARCHAR}, 
+      #{fcreateTime,jdbcType=TIMESTAMP}, #{fupdateTime,jdbcType=TIMESTAMP}, #{fcreateOperatorId,jdbcType=VARCHAR}, 
+      #{fupdateOperatorId,jdbcType=VARCHAR}, #{fdelete,jdbcType=VARCHAR}, #{fcontent,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.bean.TDataSchoolIncondition" >
+    insert into T_DATA_SCHOOL_INCONDITION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        FID,
+      </if>
+      <if test="fname != null" >
+        FNAME,
+      </if>
+      <if test="fsimplePinyin != null" >
+        FSIMPLE_PINYIN,
+      </if>
+      <if test="fcityId != null" >
+        FCITY_ID,
+      </if>
+      <if test="fareaId != null" >
+        FAREA_ID,
+      </if>
+      <if test="fimageurl != null" >
+        FIMAGEURL,
+      </if>
+      <if test="fcreateTime != null" >
+        FCREATE_TIME,
+      </if>
+      <if test="fupdateTime != null" >
+        FUPDATE_TIME,
+      </if>
+      <if test="fcreateOperatorId != null" >
+        FCREATE_OPERATOR_ID,
+      </if>
+      <if test="fupdateOperatorId != null" >
+        FUPDATE_OPERATOR_ID,
+      </if>
+      <if test="fdelete != null" >
+        FDELETE,
+      </if>
+      <if test="fcontent != null" >
+        FCONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsimplePinyin != null" >
+        #{fsimplePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fcityId != null" >
+        #{fcityId,jdbcType=VARCHAR},
+      </if>
+      <if test="fareaId != null" >
+        #{fareaId,jdbcType=VARCHAR},
+      </if>
+      <if test="fimageurl != null" >
+        #{fimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="fcreateTime != null" >
+        #{fcreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fupdateTime != null" >
+        #{fupdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcreateOperatorId != null" >
+        #{fcreateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fupdateOperatorId != null" >
+        #{fupdateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fdelete != null" >
+        #{fdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="fcontent != null" >
+        #{fcontent,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.TDataSchoolIncondition" >
+    update T_DATA_SCHOOL_INCONDITION
+    <set >
+      <if test="fname != null" >
+        FNAME = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsimplePinyin != null" >
+        FSIMPLE_PINYIN = #{fsimplePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="fcityId != null" >
+        FCITY_ID = #{fcityId,jdbcType=VARCHAR},
+      </if>
+      <if test="fareaId != null" >
+        FAREA_ID = #{fareaId,jdbcType=VARCHAR},
+      </if>
+      <if test="fimageurl != null" >
+        FIMAGEURL = #{fimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="fcreateTime != null" >
+        FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fupdateTime != null" >
+        FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcreateOperatorId != null" >
+        FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fupdateOperatorId != null" >
+        FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fdelete != null" >
+        FDELETE = #{fdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="fcontent != null" >
+        FCONTENT = #{fcontent,jdbcType=CLOB},
+      </if>
+    </set>
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.bean.TDataSchoolIncondition" >
+    update T_DATA_SCHOOL_INCONDITION
+    set FNAME = #{fname,jdbcType=VARCHAR},
+      FSIMPLE_PINYIN = #{fsimplePinyin,jdbcType=VARCHAR},
+      FCITY_ID = #{fcityId,jdbcType=VARCHAR},
+      FAREA_ID = #{fareaId,jdbcType=VARCHAR},
+      FIMAGEURL = #{fimageurl,jdbcType=VARCHAR},
+      FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      FDELETE = #{fdelete,jdbcType=VARCHAR},
+      FCONTENT = #{fcontent,jdbcType=CLOB}
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.TDataSchoolIncondition" >
+    update T_DATA_SCHOOL_INCONDITION
+    set FNAME = #{fname,jdbcType=VARCHAR},
+      FSIMPLE_PINYIN = #{fsimplePinyin,jdbcType=VARCHAR},
+      FCITY_ID = #{fcityId,jdbcType=VARCHAR},
+      FAREA_ID = #{fareaId,jdbcType=VARCHAR},
+      FIMAGEURL = #{fimageurl,jdbcType=VARCHAR},
+      FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      FDELETE = #{fdelete,jdbcType=VARCHAR}
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryTDataSchoolIncondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_DATA_SCHOOL_INCONDITION
+  </select>
+</mapper>

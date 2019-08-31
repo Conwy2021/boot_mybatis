@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="D:\work\repository\repository\com\oracle\ojdbc6\11.2.0.3\ojdbc6-11.2.0.3.jar"/>
+    <context id="context1">
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!--取消mybatis自带的注释  -->
+        <commentGenerator type="com.example.demo.configure.CustomCommentGenerator">
+
+            <property name="suppressDate" value="false"/>
+
+            <property name="suppressAllComments" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+
+            <property name="trimStrings" value="true" />
+        </commentGenerator>
+
+
+        <jdbcConnection
+                connectionURL="jdbc:oracle:thin:@localhost:1521:orcl"
+                driverClass="oracle.jdbc.driver.OracleDriver" password="BD123" userId="NEWUSER">
+            <!--  针对oracle数据库  -->
+
+            <property name="remarksReporting" value="true"></property>
+            <!-- 去重复 -->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+
+        </jdbcConnection>
+
+
+        <!-- java bean生成的路径 -->
+        <javaModelGenerator targetPackage="com.example.demo.bean"
+                            targetProject="src\main\java"/>
+
+        <!-- java mapper.xml配置文件的路径 -->
+        <sqlMapGenerator targetPackage="com.example.demo.mapper"
+                         targetProject="src\main\resources\xml"/>
+        <!-- java 接口路径 -->
+        <javaClientGenerator
+                targetPackage="com.example.demo.mapper" targetProject="src\main\java"
+                type="XMLMAPPER"/>
+
+
+        <table  tableName="T_DATA_SCHOOL" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <!-- 可以选择覆盖列 -->
+            <!-- <columnOverride column="???" property="???" /> -->
+        </table>
+    </context>
+</generatorConfiguration>

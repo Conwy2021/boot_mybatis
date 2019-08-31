@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TDataSchoolInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.TDataSchoolInfo" >
+    <id column="FID" property="fid" jdbcType="VARCHAR" />
+    <result column="FSCHOOL_ID" property="fschoolId" jdbcType="VARCHAR" />
+    <result column="FYEAR" property="fyear" jdbcType="VARCHAR" />
+    <result column="FCLASS_NUMBER" property="fclassNumber" jdbcType="DECIMAL" />
+    <result column="FENROLLMENT_NUMBER" property="fenrollmentNumber" jdbcType="DECIMAL" />
+    <result column="FENTRANCE_POINTS" property="fentrancePoints" jdbcType="VARCHAR" />
+    <result column="FINCONDITION_ID" property="finconditionId" jdbcType="VARCHAR" />
+    <result column="FENROLLMENT_NUMBER_TYPE" property="fenrollmentNumberType" jdbcType="VARCHAR" />
+    <result column="FCREATE_TIME" property="fcreateTime" jdbcType="TIMESTAMP" />
+    <result column="FUPDATE_TIME" property="fupdateTime" jdbcType="TIMESTAMP" />
+    <result column="FCREATE_OPERATOR_ID" property="fcreateOperatorId" jdbcType="VARCHAR" />
+    <result column="FUPDATE_OPERATOR_ID" property="fupdateOperatorId" jdbcType="VARCHAR" />
+    <result column="FDELETE" property="fdelete" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.bean.TDataSchoolInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="FRECRUIT_SCOPE" property="frecruitScope" jdbcType="CLOB" />
+    <result column="FRECRUIT_BROCHURE" property="frecruitBrochure" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FID, FSCHOOL_ID, FYEAR, FCLASS_NUMBER, FENROLLMENT_NUMBER, FENTRANCE_POINTS, FINCONDITION_ID, 
+    FENROLLMENT_NUMBER_TYPE, FCREATE_TIME, FUPDATE_TIME, FCREATE_OPERATOR_ID, FUPDATE_OPERATOR_ID, 
+    FDELETE
+  </sql>
+  <sql id="Blob_Column_List" >
+    FRECRUIT_SCOPE, FRECRUIT_BROCHURE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_DATA_SCHOOL_INFO
+    where FID = #{fid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_DATA_SCHOOL_INFO
+    where FID = #{fid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.bean.TDataSchoolInfoWithBLOBs" >
+    insert into T_DATA_SCHOOL_INFO (FID, FSCHOOL_ID, FYEAR, 
+      FCLASS_NUMBER, FENROLLMENT_NUMBER, FENTRANCE_POINTS, 
+      FINCONDITION_ID, FENROLLMENT_NUMBER_TYPE, 
+      FCREATE_TIME, FUPDATE_TIME, FCREATE_OPERATOR_ID, 
+      FUPDATE_OPERATOR_ID, FDELETE, FRECRUIT_SCOPE, 
+      FRECRUIT_BROCHURE)
+    values (#{fid,jdbcType=VARCHAR}, #{fschoolId,jdbcType=VARCHAR}, #{fyear,jdbcType=VARCHAR}, 
+      #{fclassNumber,jdbcType=DECIMAL}, #{fenrollmentNumber,jdbcType=DECIMAL}, #{fentrancePoints,jdbcType=VARCHAR}, 
+      #{finconditionId,jdbcType=VARCHAR}, #{fenrollmentNumberType,jdbcType=VARCHAR}, 
+      #{fcreateTime,jdbcType=TIMESTAMP}, #{fupdateTime,jdbcType=TIMESTAMP}, #{fcreateOperatorId,jdbcType=VARCHAR}, 
+      #{fupdateOperatorId,jdbcType=VARCHAR}, #{fdelete,jdbcType=VARCHAR}, #{frecruitScope,jdbcType=CLOB}, 
+      #{frecruitBrochure,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.bean.TDataSchoolInfoWithBLOBs" >
+    insert into T_DATA_SCHOOL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        FID,
+      </if>
+      <if test="fschoolId != null" >
+        FSCHOOL_ID,
+      </if>
+      <if test="fyear != null" >
+        FYEAR,
+      </if>
+      <if test="fclassNumber != null" >
+        FCLASS_NUMBER,
+      </if>
+      <if test="fenrollmentNumber != null" >
+        FENROLLMENT_NUMBER,
+      </if>
+      <if test="fentrancePoints != null" >
+        FENTRANCE_POINTS,
+      </if>
+      <if test="finconditionId != null" >
+        FINCONDITION_ID,
+      </if>
+      <if test="fenrollmentNumberType != null" >
+        FENROLLMENT_NUMBER_TYPE,
+      </if>
+      <if test="fcreateTime != null" >
+        FCREATE_TIME,
+      </if>
+      <if test="fupdateTime != null" >
+        FUPDATE_TIME,
+      </if>
+      <if test="fcreateOperatorId != null" >
+        FCREATE_OPERATOR_ID,
+      </if>
+      <if test="fupdateOperatorId != null" >
+        FUPDATE_OPERATOR_ID,
+      </if>
+      <if test="fdelete != null" >
+        FDELETE,
+      </if>
+      <if test="frecruitScope != null" >
+        FRECRUIT_SCOPE,
+      </if>
+      <if test="frecruitBrochure != null" >
+        FRECRUIT_BROCHURE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolId != null" >
+        #{fschoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="fyear != null" >
+        #{fyear,jdbcType=VARCHAR},
+      </if>
+      <if test="fclassNumber != null" >
+        #{fclassNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="fenrollmentNumber != null" >
+        #{fenrollmentNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="fentrancePoints != null" >
+        #{fentrancePoints,jdbcType=VARCHAR},
+      </if>
+      <if test="finconditionId != null" >
+        #{finconditionId,jdbcType=VARCHAR},
+      </if>
+      <if test="fenrollmentNumberType != null" >
+        #{fenrollmentNumberType,jdbcType=VARCHAR},
+      </if>
+      <if test="fcreateTime != null" >
+        #{fcreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fupdateTime != null" >
+        #{fupdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcreateOperatorId != null" >
+        #{fcreateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fupdateOperatorId != null" >
+        #{fupdateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fdelete != null" >
+        #{fdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="frecruitScope != null" >
+        #{frecruitScope,jdbcType=CLOB},
+      </if>
+      <if test="frecruitBrochure != null" >
+        #{frecruitBrochure,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.TDataSchoolInfoWithBLOBs" >
+    update T_DATA_SCHOOL_INFO
+    <set >
+      <if test="fschoolId != null" >
+        FSCHOOL_ID = #{fschoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="fyear != null" >
+        FYEAR = #{fyear,jdbcType=VARCHAR},
+      </if>
+      <if test="fclassNumber != null" >
+        FCLASS_NUMBER = #{fclassNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="fenrollmentNumber != null" >
+        FENROLLMENT_NUMBER = #{fenrollmentNumber,jdbcType=DECIMAL},
+      </if>
+      <if test="fentrancePoints != null" >
+        FENTRANCE_POINTS = #{fentrancePoints,jdbcType=VARCHAR},
+      </if>
+      <if test="finconditionId != null" >
+        FINCONDITION_ID = #{finconditionId,jdbcType=VARCHAR},
+      </if>
+      <if test="fenrollmentNumberType != null" >
+        FENROLLMENT_NUMBER_TYPE = #{fenrollmentNumberType,jdbcType=VARCHAR},
+      </if>
+      <if test="fcreateTime != null" >
+        FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fupdateTime != null" >
+        FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcreateOperatorId != null" >
+        FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fupdateOperatorId != null" >
+        FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fdelete != null" >
+        FDELETE = #{fdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="frecruitScope != null" >
+        FRECRUIT_SCOPE = #{frecruitScope,jdbcType=CLOB},
+      </if>
+      <if test="frecruitBrochure != null" >
+        FRECRUIT_BROCHURE = #{frecruitBrochure,jdbcType=CLOB},
+      </if>
+    </set>
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.bean.TDataSchoolInfoWithBLOBs" >
+    update T_DATA_SCHOOL_INFO
+    set FSCHOOL_ID = #{fschoolId,jdbcType=VARCHAR},
+      FYEAR = #{fyear,jdbcType=VARCHAR},
+      FCLASS_NUMBER = #{fclassNumber,jdbcType=DECIMAL},
+      FENROLLMENT_NUMBER = #{fenrollmentNumber,jdbcType=DECIMAL},
+      FENTRANCE_POINTS = #{fentrancePoints,jdbcType=VARCHAR},
+      FINCONDITION_ID = #{finconditionId,jdbcType=VARCHAR},
+      FENROLLMENT_NUMBER_TYPE = #{fenrollmentNumberType,jdbcType=VARCHAR},
+      FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      FDELETE = #{fdelete,jdbcType=VARCHAR},
+      FRECRUIT_SCOPE = #{frecruitScope,jdbcType=CLOB},
+      FRECRUIT_BROCHURE = #{frecruitBrochure,jdbcType=CLOB}
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.TDataSchoolInfo" >
+    update T_DATA_SCHOOL_INFO
+    set FSCHOOL_ID = #{fschoolId,jdbcType=VARCHAR},
+      FYEAR = #{fyear,jdbcType=VARCHAR},
+      FCLASS_NUMBER = #{fclassNumber,jdbcType=DECIMAL},
+      FENROLLMENT_NUMBER = #{fenrollmentNumber,jdbcType=DECIMAL},
+      FENTRANCE_POINTS = #{fentrancePoints,jdbcType=VARCHAR},
+      FINCONDITION_ID = #{finconditionId,jdbcType=VARCHAR},
+      FENROLLMENT_NUMBER_TYPE = #{fenrollmentNumberType,jdbcType=VARCHAR},
+      FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      FDELETE = #{fdelete,jdbcType=VARCHAR}
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+</mapper>

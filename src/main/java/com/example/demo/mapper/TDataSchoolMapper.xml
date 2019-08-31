@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TDataSchoolMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.bean.TDataSchool" >
+    <id column="FID" property="fid" jdbcType="VARCHAR" />
+    <result column="FNAME" property="fname" jdbcType="VARCHAR" />
+    <result column="FSIMPLE_PINYIN" property="fsimplePinyin" jdbcType="VARCHAR" />
+    <result column="FALIAS_NAME" property="faliasName" jdbcType="VARCHAR" />
+    <result column="FLAT" property="flat" jdbcType="DECIMAL" />
+    <result column="FLNG" property="flng" jdbcType="DECIMAL" />
+    <result column="FCITY_ID" property="fcityId" jdbcType="VARCHAR" />
+    <result column="FAREA_ID" property="fareaId" jdbcType="VARCHAR" />
+    <result column="FGEOGRAPHY_AREA_ID" property="fgeographyAreaId" jdbcType="VARCHAR" />
+    <result column="FADDRESS" property="faddress" jdbcType="VARCHAR" />
+    <result column="FSCHOOL_TYPE" property="fschoolType" jdbcType="VARCHAR" />
+    <result column="FSCHOOL_SUB_TYPE" property="fschoolSubType" jdbcType="VARCHAR" />
+    <result column="FSCHOOL_GRADE" property="fschoolGrade" jdbcType="VARCHAR" />
+    <result column="FENTRANCE_WAY" property="fentranceWay" jdbcType="VARCHAR" />
+    <result column="FDEGREE_LOCK" property="fdegreeLock" jdbcType="VARCHAR" />
+    <result column="FQUOTA" property="fquota" jdbcType="VARCHAR" />
+    <result column="FDISTRICT_ID" property="fdistrictId" jdbcType="VARCHAR" />
+    <result column="FSCHOOL_NATURE" property="fschoolNature" jdbcType="VARCHAR" />
+    <result column="FPHONE" property="fphone" jdbcType="VARCHAR" />
+    <result column="FWEBSITE" property="fwebsite" jdbcType="VARCHAR" />
+    <result column="FFACILITIES" property="ffacilities" jdbcType="VARCHAR" />
+    <result column="FAWARDS" property="fawards" jdbcType="VARCHAR" />
+    <result column="FFEATURE" property="ffeature" jdbcType="VARCHAR" />
+    <result column="FCREATE_TIME" property="fcreateTime" jdbcType="TIMESTAMP" />
+    <result column="FUPDATE_TIME" property="fupdateTime" jdbcType="TIMESTAMP" />
+    <result column="FCREATE_OPERATOR_ID" property="fcreateOperatorId" jdbcType="VARCHAR" />
+    <result column="FUPDATE_OPERATOR_ID" property="fupdateOperatorId" jdbcType="VARCHAR" />
+    <result column="FDELETE" property="fdelete" jdbcType="VARCHAR" />
+    <result column="FRELATION_GARDEN" property="frelationGarden" jdbcType="DECIMAL" />
+    <result column="FSCOPE_LAT_LNG" property="fscopeLatLng" jdbcType="VARCHAR" />
+    <result column="FIS_PICTURE" property="fisPicture" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.bean.TDataSchoolWithBLOBs" extends="BaseResultMap" >
+    <result column="FSCHOOL_PROFILE" property="fschoolProfile" jdbcType="CLOB" />
+    <result column="FTEACHER_STRENGTH" property="fteacherStrength" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FID, FNAME, FSIMPLE_PINYIN, FALIAS_NAME, FLAT, FLNG, FCITY_ID, FAREA_ID, FGEOGRAPHY_AREA_ID, 
+    FADDRESS, FSCHOOL_TYPE, FSCHOOL_SUB_TYPE, FSCHOOL_GRADE, FENTRANCE_WAY, FDEGREE_LOCK, 
+    FQUOTA, FDISTRICT_ID, FSCHOOL_NATURE, FPHONE, FWEBSITE, FFACILITIES, FAWARDS, FFEATURE, 
+    FCREATE_TIME, FUPDATE_TIME, FCREATE_OPERATOR_ID, FUPDATE_OPERATOR_ID, FDELETE, FRELATION_GARDEN, 
+    FSCOPE_LAT_LNG, FIS_PICTURE
+  </sql>
+  <sql id="Blob_Column_List" >
+    FSCHOOL_PROFILE, FTEACHER_STRENGTH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_DATA_SCHOOL
+    where FID = #{fid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_DATA_SCHOOL
+    where FID = #{fid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.bean.TDataSchoolWithBLOBs" >
+    insert into T_DATA_SCHOOL (FID, FNAME, FSIMPLE_PINYIN, 
+      FALIAS_NAME, FLAT, FLNG, 
+      FCITY_ID, FAREA_ID, FGEOGRAPHY_AREA_ID, 
+      FADDRESS, FSCHOOL_TYPE, FSCHOOL_SUB_TYPE, 
+      FSCHOOL_GRADE, FENTRANCE_WAY, FDEGREE_LOCK, 
+      FQUOTA, FDISTRICT_ID, FSCHOOL_NATURE, 
+      FPHONE, FWEBSITE, FFACILITIES, 
+      FAWARDS, FFEATURE, FCREATE_TIME, 
+      FUPDATE_TIME, FCREATE_OPERATOR_ID, FUPDATE_OPERATOR_ID, 
+      FDELETE, FRELATION_GARDEN, FSCOPE_LAT_LNG, 
+      FIS_PICTURE, FSCHOOL_PROFILE, FTEACHER_STRENGTH
+      )
+    values (#{fid,jdbcType=VARCHAR}, #{fname,jdbcType=VARCHAR}, #{fsimplePinyin,jdbcType=VARCHAR}, 
+      #{faliasName,jdbcType=VARCHAR}, #{flat,jdbcType=DECIMAL}, #{flng,jdbcType=DECIMAL}, 
+      #{fcityId,jdbcType=VARCHAR}, #{fareaId,jdbcType=VARCHAR}, #{fgeographyAreaId,jdbcType=VARCHAR}, 
+      #{faddress,jdbcType=VARCHAR}, #{fschoolType,jdbcType=VARCHAR}, #{fschoolSubType,jdbcType=VARCHAR}, 
+      #{fschoolGrade,jdbcType=VARCHAR}, #{fentranceWay,jdbcType=VARCHAR}, #{fdegreeLock,jdbcType=VARCHAR}, 
+      #{fquota,jdbcType=VARCHAR}, #{fdistrictId,jdbcType=VARCHAR}, #{fschoolNature,jdbcType=VARCHAR}, 
+      #{fphone,jdbcType=VARCHAR}, #{fwebsite,jdbcType=VARCHAR}, #{ffacilities,jdbcType=VARCHAR}, 
+      #{fawards,jdbcType=VARCHAR}, #{ffeature,jdbcType=VARCHAR}, #{fcreateTime,jdbcType=TIMESTAMP}, 
+      #{fupdateTime,jdbcType=TIMESTAMP}, #{fcreateOperatorId,jdbcType=VARCHAR}, #{fupdateOperatorId,jdbcType=VARCHAR}, 
+      #{fdelete,jdbcType=VARCHAR}, #{frelationGarden,jdbcType=DECIMAL}, #{fscopeLatLng,jdbcType=VARCHAR}, 
+      #{fisPicture,jdbcType=VARCHAR}, #{fschoolProfile,jdbcType=CLOB}, #{fteacherStrength,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.bean.TDataSchoolWithBLOBs" >
+    insert into T_DATA_SCHOOL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        FID,
+      </if>
+      <if test="fname != null" >
+        FNAME,
+      </if>
+      <if test="fsimplePinyin != null" >
+        FSIMPLE_PINYIN,
+      </if>
+      <if test="faliasName != null" >
+        FALIAS_NAME,
+      </if>
+      <if test="flat != null" >
+        FLAT,
+      </if>
+      <if test="flng != null" >
+        FLNG,
+      </if>
+      <if test="fcityId != null" >
+        FCITY_ID,
+      </if>
+      <if test="fareaId != null" >
+        FAREA_ID,
+      </if>
+      <if test="fgeographyAreaId != null" >
+        FGEOGRAPHY_AREA_ID,
+      </if>
+      <if test="faddress != null" >
+        FADDRESS,
+      </if>
+      <if test="fschoolType != null" >
+        FSCHOOL_TYPE,
+      </if>
+      <if test="fschoolSubType != null" >
+        FSCHOOL_SUB_TYPE,
+      </if>
+      <if test="fschoolGrade != null" >
+        FSCHOOL_GRADE,
+      </if>
+      <if test="fentranceWay != null" >
+        FENTRANCE_WAY,
+      </if>
+      <if test="fdegreeLock != null" >
+        FDEGREE_LOCK,
+      </if>
+      <if test="fquota != null" >
+        FQUOTA,
+      </if>
+      <if test="fdistrictId != null" >
+        FDISTRICT_ID,
+      </if>
+      <if test="fschoolNature != null" >
+        FSCHOOL_NATURE,
+      </if>
+      <if test="fphone != null" >
+        FPHONE,
+      </if>
+      <if test="fwebsite != null" >
+        FWEBSITE,
+      </if>
+      <if test="ffacilities != null" >
+        FFACILITIES,
+      </if>
+      <if test="fawards != null" >
+        FAWARDS,
+      </if>
+      <if test="ffeature != null" >
+        FFEATURE,
+      </if>
+      <if test="fcreateTime != null" >
+        FCREATE_TIME,
+      </if>
+      <if test="fupdateTime != null" >
+        FUPDATE_TIME,
+      </if>
+      <if test="fcreateOperatorId != null" >
+        FCREATE_OPERATOR_ID,
+      </if>
+      <if test="fupdateOperatorId != null" >
+        FUPDATE_OPERATOR_ID,
+      </if>
+      <if test="fdelete != null" >
+        FDELETE,
+      </if>
+      <if test="frelationGarden != null" >
+        FRELATION_GARDEN,
+      </if>
+      <if test="fscopeLatLng != null" >
+        FSCOPE_LAT_LNG,
+      </if>
+      <if test="fisPicture != null" >
+        FIS_PICTURE,
+      </if>
+      <if test="fschoolProfile != null" >
+        FSCHOOL_PROFILE,
+      </if>
+      <if test="fteacherStrength != null" >
+        FTEACHER_STRENGTH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fid != null" >
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsimplePinyin != null" >
+        #{fsimplePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="faliasName != null" >
+        #{faliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="flat != null" >
+        #{flat,jdbcType=DECIMAL},
+      </if>
+      <if test="flng != null" >
+        #{flng,jdbcType=DECIMAL},
+      </if>
+      <if test="fcityId != null" >
+        #{fcityId,jdbcType=VARCHAR},
+      </if>
+      <if test="fareaId != null" >
+        #{fareaId,jdbcType=VARCHAR},
+      </if>
+      <if test="fgeographyAreaId != null" >
+        #{fgeographyAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="faddress != null" >
+        #{faddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolType != null" >
+        #{fschoolType,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolSubType != null" >
+        #{fschoolSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolGrade != null" >
+        #{fschoolGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="fentranceWay != null" >
+        #{fentranceWay,jdbcType=VARCHAR},
+      </if>
+      <if test="fdegreeLock != null" >
+        #{fdegreeLock,jdbcType=VARCHAR},
+      </if>
+      <if test="fquota != null" >
+        #{fquota,jdbcType=VARCHAR},
+      </if>
+      <if test="fdistrictId != null" >
+        #{fdistrictId,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolNature != null" >
+        #{fschoolNature,jdbcType=VARCHAR},
+      </if>
+      <if test="fphone != null" >
+        #{fphone,jdbcType=VARCHAR},
+      </if>
+      <if test="fwebsite != null" >
+        #{fwebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="ffacilities != null" >
+        #{ffacilities,jdbcType=VARCHAR},
+      </if>
+      <if test="fawards != null" >
+        #{fawards,jdbcType=VARCHAR},
+      </if>
+      <if test="ffeature != null" >
+        #{ffeature,jdbcType=VARCHAR},
+      </if>
+      <if test="fcreateTime != null" >
+        #{fcreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fupdateTime != null" >
+        #{fupdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcreateOperatorId != null" >
+        #{fcreateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fupdateOperatorId != null" >
+        #{fupdateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fdelete != null" >
+        #{fdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="frelationGarden != null" >
+        #{frelationGarden,jdbcType=DECIMAL},
+      </if>
+      <if test="fscopeLatLng != null" >
+        #{fscopeLatLng,jdbcType=VARCHAR},
+      </if>
+      <if test="fisPicture != null" >
+        #{fisPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolProfile != null" >
+        #{fschoolProfile,jdbcType=CLOB},
+      </if>
+      <if test="fteacherStrength != null" >
+        #{fteacherStrength,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.bean.TDataSchoolWithBLOBs" >
+    update T_DATA_SCHOOL
+    <set >
+      <if test="fname != null" >
+        FNAME = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fsimplePinyin != null" >
+        FSIMPLE_PINYIN = #{fsimplePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="faliasName != null" >
+        FALIAS_NAME = #{faliasName,jdbcType=VARCHAR},
+      </if>
+      <if test="flat != null" >
+        FLAT = #{flat,jdbcType=DECIMAL},
+      </if>
+      <if test="flng != null" >
+        FLNG = #{flng,jdbcType=DECIMAL},
+      </if>
+      <if test="fcityId != null" >
+        FCITY_ID = #{fcityId,jdbcType=VARCHAR},
+      </if>
+      <if test="fareaId != null" >
+        FAREA_ID = #{fareaId,jdbcType=VARCHAR},
+      </if>
+      <if test="fgeographyAreaId != null" >
+        FGEOGRAPHY_AREA_ID = #{fgeographyAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="faddress != null" >
+        FADDRESS = #{faddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolType != null" >
+        FSCHOOL_TYPE = #{fschoolType,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolSubType != null" >
+        FSCHOOL_SUB_TYPE = #{fschoolSubType,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolGrade != null" >
+        FSCHOOL_GRADE = #{fschoolGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="fentranceWay != null" >
+        FENTRANCE_WAY = #{fentranceWay,jdbcType=VARCHAR},
+      </if>
+      <if test="fdegreeLock != null" >
+        FDEGREE_LOCK = #{fdegreeLock,jdbcType=VARCHAR},
+      </if>
+      <if test="fquota != null" >
+        FQUOTA = #{fquota,jdbcType=VARCHAR},
+      </if>
+      <if test="fdistrictId != null" >
+        FDISTRICT_ID = #{fdistrictId,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolNature != null" >
+        FSCHOOL_NATURE = #{fschoolNature,jdbcType=VARCHAR},
+      </if>
+      <if test="fphone != null" >
+        FPHONE = #{fphone,jdbcType=VARCHAR},
+      </if>
+      <if test="fwebsite != null" >
+        FWEBSITE = #{fwebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="ffacilities != null" >
+        FFACILITIES = #{ffacilities,jdbcType=VARCHAR},
+      </if>
+      <if test="fawards != null" >
+        FAWARDS = #{fawards,jdbcType=VARCHAR},
+      </if>
+      <if test="ffeature != null" >
+        FFEATURE = #{ffeature,jdbcType=VARCHAR},
+      </if>
+      <if test="fcreateTime != null" >
+        FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fupdateTime != null" >
+        FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fcreateOperatorId != null" >
+        FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fupdateOperatorId != null" >
+        FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="fdelete != null" >
+        FDELETE = #{fdelete,jdbcType=VARCHAR},
+      </if>
+      <if test="frelationGarden != null" >
+        FRELATION_GARDEN = #{frelationGarden,jdbcType=DECIMAL},
+      </if>
+      <if test="fscopeLatLng != null" >
+        FSCOPE_LAT_LNG = #{fscopeLatLng,jdbcType=VARCHAR},
+      </if>
+      <if test="fisPicture != null" >
+        FIS_PICTURE = #{fisPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="fschoolProfile != null" >
+        FSCHOOL_PROFILE = #{fschoolProfile,jdbcType=CLOB},
+      </if>
+      <if test="fteacherStrength != null" >
+        FTEACHER_STRENGTH = #{fteacherStrength,jdbcType=CLOB},
+      </if>
+    </set>
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.bean.TDataSchoolWithBLOBs" >
+    update T_DATA_SCHOOL
+    set FNAME = #{fname,jdbcType=VARCHAR},
+      FSIMPLE_PINYIN = #{fsimplePinyin,jdbcType=VARCHAR},
+      FALIAS_NAME = #{faliasName,jdbcType=VARCHAR},
+      FLAT = #{flat,jdbcType=DECIMAL},
+      FLNG = #{flng,jdbcType=DECIMAL},
+      FCITY_ID = #{fcityId,jdbcType=VARCHAR},
+      FAREA_ID = #{fareaId,jdbcType=VARCHAR},
+      FGEOGRAPHY_AREA_ID = #{fgeographyAreaId,jdbcType=VARCHAR},
+      FADDRESS = #{faddress,jdbcType=VARCHAR},
+      FSCHOOL_TYPE = #{fschoolType,jdbcType=VARCHAR},
+      FSCHOOL_SUB_TYPE = #{fschoolSubType,jdbcType=VARCHAR},
+      FSCHOOL_GRADE = #{fschoolGrade,jdbcType=VARCHAR},
+      FENTRANCE_WAY = #{fentranceWay,jdbcType=VARCHAR},
+      FDEGREE_LOCK = #{fdegreeLock,jdbcType=VARCHAR},
+      FQUOTA = #{fquota,jdbcType=VARCHAR},
+      FDISTRICT_ID = #{fdistrictId,jdbcType=VARCHAR},
+      FSCHOOL_NATURE = #{fschoolNature,jdbcType=VARCHAR},
+      FPHONE = #{fphone,jdbcType=VARCHAR},
+      FWEBSITE = #{fwebsite,jdbcType=VARCHAR},
+      FFACILITIES = #{ffacilities,jdbcType=VARCHAR},
+      FAWARDS = #{fawards,jdbcType=VARCHAR},
+      FFEATURE = #{ffeature,jdbcType=VARCHAR},
+      FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      FDELETE = #{fdelete,jdbcType=VARCHAR},
+      FRELATION_GARDEN = #{frelationGarden,jdbcType=DECIMAL},
+      FSCOPE_LAT_LNG = #{fscopeLatLng,jdbcType=VARCHAR},
+      FIS_PICTURE = #{fisPicture,jdbcType=VARCHAR},
+      FSCHOOL_PROFILE = #{fschoolProfile,jdbcType=CLOB},
+      FTEACHER_STRENGTH = #{fteacherStrength,jdbcType=CLOB}
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.bean.TDataSchool" >
+    update T_DATA_SCHOOL
+    set FNAME = #{fname,jdbcType=VARCHAR},
+      FSIMPLE_PINYIN = #{fsimplePinyin,jdbcType=VARCHAR},
+      FALIAS_NAME = #{faliasName,jdbcType=VARCHAR},
+      FLAT = #{flat,jdbcType=DECIMAL},
+      FLNG = #{flng,jdbcType=DECIMAL},
+      FCITY_ID = #{fcityId,jdbcType=VARCHAR},
+      FAREA_ID = #{fareaId,jdbcType=VARCHAR},
+      FGEOGRAPHY_AREA_ID = #{fgeographyAreaId,jdbcType=VARCHAR},
+      FADDRESS = #{faddress,jdbcType=VARCHAR},
+      FSCHOOL_TYPE = #{fschoolType,jdbcType=VARCHAR},
+      FSCHOOL_SUB_TYPE = #{fschoolSubType,jdbcType=VARCHAR},
+      FSCHOOL_GRADE = #{fschoolGrade,jdbcType=VARCHAR},
+      FENTRANCE_WAY = #{fentranceWay,jdbcType=VARCHAR},
+      FDEGREE_LOCK = #{fdegreeLock,jdbcType=VARCHAR},
+      FQUOTA = #{fquota,jdbcType=VARCHAR},
+      FDISTRICT_ID = #{fdistrictId,jdbcType=VARCHAR},
+      FSCHOOL_NATURE = #{fschoolNature,jdbcType=VARCHAR},
+      FPHONE = #{fphone,jdbcType=VARCHAR},
+      FWEBSITE = #{fwebsite,jdbcType=VARCHAR},
+      FFACILITIES = #{ffacilities,jdbcType=VARCHAR},
+      FAWARDS = #{fawards,jdbcType=VARCHAR},
+      FFEATURE = #{ffeature,jdbcType=VARCHAR},
+      FCREATE_TIME = #{fcreateTime,jdbcType=TIMESTAMP},
+      FUPDATE_TIME = #{fupdateTime,jdbcType=TIMESTAMP},
+      FCREATE_OPERATOR_ID = #{fcreateOperatorId,jdbcType=VARCHAR},
+      FUPDATE_OPERATOR_ID = #{fupdateOperatorId,jdbcType=VARCHAR},
+      FDELETE = #{fdelete,jdbcType=VARCHAR},
+      FRELATION_GARDEN = #{frelationGarden,jdbcType=DECIMAL},
+      FSCOPE_LAT_LNG = #{fscopeLatLng,jdbcType=VARCHAR},
+      FIS_PICTURE = #{fisPicture,jdbcType=VARCHAR}
+    where FID = #{fid,jdbcType=VARCHAR}
+  </update>
+</mapper>
