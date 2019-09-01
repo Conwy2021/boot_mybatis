@@ -20,8 +20,8 @@
 
 
         <jdbcConnection
-                connectionURL="jdbc:oracle:thin:@localhost:1521:orcl"
-                driverClass="oracle.jdbc.driver.OracleDriver" password="BD123" userId="NEWUSER">
+                connectionURL="jdbc:mysql://localhost:3306/sdudent?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;useSSL=false"
+                driverClass="com.mysql.jdbc.Driver" password="root" userId="root">
             <!--  针对oracle数据库  -->
 
             <property name="remarksReporting" value="true"></property>
@@ -37,14 +37,14 @@
 
         <!-- java mapper.xml配置文件的路径 -->
         <sqlMapGenerator targetPackage="com.example.demo.mapper"
-                         targetProject="src\main\resources\xml"/>
+                         targetProject="src\main\java"/>
         <!-- java 接口路径 -->
         <javaClientGenerator
                 targetPackage="com.example.demo.mapper" targetProject="src\main\java"
                 type="XMLMAPPER"/>
 
 
-        <table  tableName="T_DATA_SCHOOL" enableCountByExample="false"
+        <table  tableName="emp" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <!-- 可以选择覆盖列 -->

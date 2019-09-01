@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.bean.TDataSchoolIncondition;
 import java.util.List;
 
 /**
@@ -12,7 +11,4 @@ import java.util.List;
 
 public interface InterfaceService {
 
-    List<TDataSchoolIncondition> queryTDataSchoolIncondition();
-
-    TDataSchoolIncondition selectById(String id);
 }
