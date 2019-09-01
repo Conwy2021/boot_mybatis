@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -42,6 +43,15 @@ public class DemoApplicationTests {
         String name = "hello world";
         log.debug("my name is {}", name);
         System.out.println(name);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+        list.forEach(e -> System.out.println(e));
+
+
     }
 
     @Test
