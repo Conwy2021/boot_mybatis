@@ -6,11 +6,14 @@ import com.example.demo.service.Implements.ServiceImplements;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -26,6 +29,13 @@ public class DemoApplicationTests {
     public void test2(){
 
         List<Emp> emps = empMapper.queryEmp();
+        System.out.println(emps);
+
+        Collections.sort(emps, ((o1, o2) -> {
+            int len1 = o1.getMgr();
+            int len2 = o2.getMgr();
+            return len2 - len1;
+        }));
         System.out.println(emps);
     }
 
