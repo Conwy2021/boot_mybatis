@@ -49,4 +49,9 @@ public class DemoApplicationTests {
         List<TDataSchoolIncondition> tDataSchoolInconditions = serviceImplements.queryTDataSchoolIncondition();
         System.out.println(tDataSchoolInconditions);
     }
+
+    @Test
+    public void test3(){
+
+    }
 }
