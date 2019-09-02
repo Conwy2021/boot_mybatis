@@ -93,4 +93,17 @@ public class Emp {
     public void setDeptno(Integer deptno) {
         this.deptno = deptno;
     }
+
+    @Override
+    public String toString() {
+        return "Emp{" +
+                "empno=" + empno +
+                ", ename='" + ename + '\'' +
+                ", job='" + job + '\'' +
+                ", mgr=" + mgr +
+                ", hiredate=" + hiredate +
+                ", sal=" + sal +
+                ", deptno=" + deptno +
+                '}';
+    }
 }

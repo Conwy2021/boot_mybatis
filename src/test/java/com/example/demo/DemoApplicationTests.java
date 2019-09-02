@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.bean.Emp;
+import com.example.demo.mapper.EmpMapper;
 import com.example.demo.service.Implements.ServiceImplements;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
@@ -17,8 +20,14 @@ public class DemoApplicationTests {
 
 
     @Resource
-    ServiceImplements serviceImplements;
+    private EmpMapper empMapper;
 
+    @Test
+    public void test2(){
+
+        List<Emp> emps = empMapper.queryEmp();
+        System.out.println(emps);
+    }
 
 
 
