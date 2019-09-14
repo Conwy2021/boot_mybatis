@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.demo.bean.Emp;
 import com.example.demo.mapper.EmpMapper;
 import com.example.demo.service.Implements.ServiceImplements;
@@ -12,9 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import javax.xml.bind.SchemaOutputResolver;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = DemoApplication.class)
@@ -26,7 +26,7 @@ public class DemoApplicationTests {
     private EmpMapper empMapper;
 
     @Test
-    public void test2(){
+    public void test2() {
 
         List<Emp> emps = empMapper.queryEmp();
         System.out.println(emps);
@@ -39,6 +39,12 @@ public class DemoApplicationTests {
         System.out.println(emps);
     }
 
+    @Test
+    public void test3() {
+        List<Emp> emps = empMapper.queryEmp();
+        Map<Integer, String> empNameMap = emps.stream().collect(Collectors.toMap(Emp::getEmpno, Emp::getEname));
+        System.out.println(empNameMap);
+    }
 
 
     @Test
@@ -57,5 +63,46 @@ public class DemoApplicationTests {
 
     }
 
+    @Test
+    public void test4(){
+        List c = new ArrayList<>();
+        StringBuilder builder = new StringBuilder("leaves growing");
+        do{
+            builder.delete(0,5);
+        }while(builder.length()>5);
+        System.out.println(builder);
 
+    }
+
+    public static void main(String...books) {
+        StringBuilder sb = new StringBuilder();
+        for (String book : books) {
+            sb.insert(sb.indexOf("c"),book);
+            System.out.println(sb);
+        }
+    }
+
+    @Test
+    public void test5() {
+        main("car","carts");//下标越界
+    }
+
+    @Test
+    public void test6(){
+        HashSet<String> strings = new HashSet<>();
+        strings.add("a");
+        strings.add("a");
+        strings.add("b");
+        strings.add("b");
+        strings.add("c");
+        strings.add("c");
+        ArrayList<String> lists = new ArrayList<>(strings);
+        System.out.println(lists);
+    }
+
+    @Test
+    public void test7() {
+        Integer i = empMapper.countEmp();
+        System.out.println(i);
+    }
 }

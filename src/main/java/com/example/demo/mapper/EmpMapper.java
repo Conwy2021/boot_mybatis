@@ -18,4 +18,6 @@ public interface EmpMapper {
     int updateByPrimaryKeySelective(Emp record);
 
     int updateByPrimaryKey(Emp record);
+
+    Integer countEmp();
 }

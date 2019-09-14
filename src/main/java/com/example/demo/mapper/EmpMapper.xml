@@ -24,6 +24,11 @@
     <include refid="Base_Column_List" />
     from emp
   </select>
+
+  <select id="countEmp" resultType="java.lang.Integer">
+    select count(1) from emp;
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from emp
     where empno = #{empno,jdbcType=INTEGER}
