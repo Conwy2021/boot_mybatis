@@ -1,18 +1,15 @@
 package com.example.demo;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.demo.bean.Emp;
 import com.example.demo.mapper.EmpMapper;
-import com.example.demo.service.Implements.ServiceImplements;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -102,7 +99,10 @@ public class DemoApplicationTests {
 
     @Test
     public void test7() {
-        Integer i = empMapper.countEmp();
-        System.out.println(i);
+       /* Emp emp = empMapper.selectByPrimaryKey(10001);
+        System.out.println(emp);*/
+
+        Integer integer = empMapper.countEmp();
+        System.out.println(integer);
     }
 }
