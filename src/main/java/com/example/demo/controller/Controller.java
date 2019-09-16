@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.bean.Emp;
+import com.example.demo.service.Implements.ServiceImplements;
 import com.example.demo.service.InterfaceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +19,16 @@ public class Controller {
     @Autowired
     private InterfaceService interfaceService;
 
+    @Autowired
+    private ServiceImplements serviceImplements;
+
+    @GetMapping("/queryEmp")
+    public List<Emp> queryEmpContr(){
+        return interfaceService.queryEmpServ();
+    }
+
+    public List<Emp> queryEmp2(){
+        return null;
+    }
 
 }

@@ -1,5 +1,9 @@
 package com.example.demo.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.org.apache.bcel.internal.generic.DDIV;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Emp {
@@ -26,6 +30,8 @@ public class Emp {
     /**
      * 入职日期
      */
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT-8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hiredate;
 
     /**

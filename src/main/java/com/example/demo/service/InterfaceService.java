@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.bean.Emp;
+
 import java.util.List;
 
 /**
@@ -11,4 +13,5 @@ import java.util.List;
 
 public interface InterfaceService {
 
+    List<Emp> queryEmpServ();
 }
