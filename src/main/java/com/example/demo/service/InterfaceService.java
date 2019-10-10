@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.bean.Emp;
+import com.example.demo.bean.OneToManyInsertFrom;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ import java.util.List;
 public interface InterfaceService {
 
     List<Emp> queryEmpServ();
+
+    String oneToManyInsertFromServ(OneToManyInsertFrom oneToManyInsertFrom);
 }

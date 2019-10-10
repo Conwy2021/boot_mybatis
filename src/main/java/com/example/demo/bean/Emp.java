@@ -4,12 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.org.apache.bcel.internal.generic.DDIV;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class Emp {
     /**
      * 员工编号
+     *
      */
+    @NotNull
     private Integer empno;
 
     /**
@@ -29,9 +32,11 @@ public class Emp {
 
     /**
      * 入职日期
+     * js是出参格式发，
+     * date是入参格式化
      */
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT-8")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT-8")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hiredate;
 
     /**
@@ -43,6 +48,9 @@ public class Emp {
      * 部门编号
      */
     private Integer deptno;
+
+
+
 
     public Integer getEmpno() {
         return empno;
@@ -99,6 +107,8 @@ public class Emp {
     public void setDeptno(Integer deptno) {
         this.deptno = deptno;
     }
+
+
 
     @Override
     public String toString() {

@@ -44,7 +44,7 @@
                 type="XMLMAPPER"/>
 
 
-        <table  tableName="emp" enableCountByExample="false"
+        <table  tableName="student" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <!-- 可以选择覆盖列 -->

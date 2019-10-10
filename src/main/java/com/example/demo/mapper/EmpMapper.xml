@@ -25,8 +25,32 @@
     from emp
   </select>
 
+  <select id="queryEmpByPage" resultMap="BaseResultMap" parameterType="com.example.demo.bean.EmpQueryFrom">
+    select
+    *
+    from emp
+    <where>
+      <if test="empno !=null ">
+        and empno like concat('%',#{empno},'%')
+      </if>
+      <if test="ename !=null and ename !=''">
+        and ename like concat('%',#{ename},'%')
+      </if>
+      <if test="keyword !=null and keyword !=''">
+        and empno like concat('%',#{keyword},'%') or ename like concat('%',#{keyword},'%')
+      </if>
+    </where>
+    <if test="currPage != null and pageSize != null">
+     limit #{currPage},#{pageSize}
+    </if>
+
+  </select>
   <select id="countEmp" resultType="java.lang.Integer">
     select count(1) from emp;
+  </select>
+  <select id="selectTest" resultType="com.example.demo.bean.Emp">
+    select * from emp where job=#{a} and empno=#{b};
+
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

@@ -1,11 +1,15 @@
 package com.example.demo;
 
+import com.example.demo.Enum.DemoEnum;
+import com.example.demo.Enum.YNEnum;
+import com.example.demo.Static.Num;
 import com.example.demo.bean.Emp;
+import com.example.demo.bean.EmpQueryFrom;
+import com.example.demo.controller.Controller;
 import com.example.demo.mapper.EmpMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,6 +26,66 @@ public class DemoApplicationTests {
     @Resource
     private EmpMapper empMapper;
 
+    @Resource
+    private Controller controller;
+
+    /**
+     * @Author:LiuKangwei
+     * @Return:void
+     * @Date:2019/9/23 0:16
+     * @Description: 模板
+     */
+    @Test
+    public void testDemo() {
+
+    }
+    @Test
+    public void testDemo6() {
+
+        Date date = new Date();
+        System.out.println(date);
+
+    }
+
+    @Test
+    public void testDemo5() {
+
+        List<Emp> emps = controller.queryEmpContr();
+        log.info("log info {}",emps);
+        System.out.println("sout--->"+emps);
+    }
+
+    @Test
+    public void testDemo4() {
+        Emp emp = empMapper.selectTest("经理", "10001");
+        System.out.println(emp);
+    }
+
+
+    @Test
+    public void testDemo3() {
+        DemoEnum chun = DemoEnum.chun;
+        System.out.println(chun);
+
+    }
+    @Test
+    public void testDemo2() {
+
+        YNEnum yes = YNEnum.YES;
+        System.out.println(yes);
+        int name = yes.getName();
+        System.out.println(yes.getName());
+    }
+    @Test
+    public void testDemo1() {
+
+        int num = Num.number;
+        Num.number++;
+//        num++;错误  不会自增
+//        num=num+1;错误  不会自增
+        String s = String.valueOf(num);
+        System.out.println(s);
+    }
     @Test
     public void test2() {
 
@@ -107,4 +171,25 @@ public class DemoApplicationTests {
     }
 
 
+    /**
+     * @Author:LiuKangwei
+     * @Return:void
+     * @Date:2019/9/22 18:14
+     * @Description:分页测试，条件查询测试
+     */
+    @Test
+    public void test8(){
+        EmpQueryFrom empQueryFrom = new EmpQueryFrom();
+        empQueryFrom.setCurrPage(2);
+        empQueryFrom.setPageSize(1);
+        List<Emp> emps = empMapper.queryEmpByPage(empQueryFrom);
+        System.out.println(emps);
+
+        EmpQueryFrom empQueryFrom1 = new EmpQueryFrom();
+        empQueryFrom1.setKeyword("哈");
+        empQueryFrom.setCurrPage(2);
+        empQueryFrom.setPageSize(1);
+        List<Emp> emps1 = empMapper.queryEmpByPage(empQueryFrom1);
+        System.out.println("关键字"+emps1);
+    }
 }
