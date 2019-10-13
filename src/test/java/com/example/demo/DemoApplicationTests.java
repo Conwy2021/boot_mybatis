@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.alibaba.druid.support.spring.stat.SpringStatUtils;
 import com.example.demo.Enum.DemoEnum;
 import com.example.demo.Enum.YNEnum;
 import com.example.demo.Static.Num;
@@ -12,8 +13,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.lang.model.element.NestingKind;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,6 +42,14 @@ public class DemoApplicationTests {
     public void testDemo() {
 
     }
+
+    @Test
+    public void testDemo7() {
+        String s = new String("a|a");
+        StringUtils.split(s,"|");
+        System.out.println(s);
+    }
+
     @Test
     public void testDemo6() {
 
@@ -51,8 +62,8 @@ public class DemoApplicationTests {
     public void testDemo5() {
 
         List<Emp> emps = controller.queryEmpContr();
-        log.info("log info {}",emps);
-        System.out.println("sout--->"+emps);
+        log.info("log info {}", emps);
+        System.out.println("sout--->" + emps);
     }
 
     @Test
@@ -68,6 +79,7 @@ public class DemoApplicationTests {
         System.out.println(chun);
 
     }
+
     @Test
     public void testDemo2() {
 
@@ -76,6 +88,7 @@ public class DemoApplicationTests {
         int name = yes.getName();
         System.out.println(yes.getName());
     }
+
     @Test
     public void testDemo1() {
 
@@ -86,6 +99,7 @@ public class DemoApplicationTests {
         String s = String.valueOf(num);
         System.out.println(s);
     }
+
     @Test
     public void test2() {
 
@@ -125,31 +139,31 @@ public class DemoApplicationTests {
     }
 
     @Test
-    public void test4(){
+    public void test4() {
         List c = new ArrayList<>();
         StringBuilder builder = new StringBuilder("leaves growing");
-        do{
-            builder.delete(0,5);
-        }while(builder.length()>5);
+        do {
+            builder.delete(0, 5);
+        } while (builder.length() > 5);
         System.out.println(builder);
 
     }
 
-    public static void main(String...books) {
+    public static void main(String... books) {
         StringBuilder sb = new StringBuilder();
         for (String book : books) {
-            sb.insert(sb.indexOf("c"),book);
+            sb.insert(sb.indexOf("c"), book);
             System.out.println(sb);
         }
     }
 
     @Test
     public void test5() {
-        main("car","carts");//下标越界
+        main("car", "carts");//下标越界
     }
 
     @Test
-    public void test6(){
+    public void test6() {
         HashSet<String> strings = new HashSet<>();
         strings.add("a");
         strings.add("a");
@@ -178,7 +192,7 @@ public class DemoApplicationTests {
      * @Description:分页测试，条件查询测试
      */
     @Test
-    public void test8(){
+    public void test8() {
         EmpQueryFrom empQueryFrom = new EmpQueryFrom();
         empQueryFrom.setCurrPage(2);
         empQueryFrom.setPageSize(1);
@@ -190,6 +204,6 @@ public class DemoApplicationTests {
         empQueryFrom.setCurrPage(2);
         empQueryFrom.setPageSize(1);
         List<Emp> emps1 = empMapper.queryEmpByPage(empQueryFrom1);
-        System.out.println("关键字"+emps1);
+        System.out.println("关键字" + emps1);
     }
 }
