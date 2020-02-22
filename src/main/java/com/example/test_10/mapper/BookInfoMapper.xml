@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.test_10.mapper.BookInfoMapper">
+    <resultMap id="BaseResultMap" type="com.example.test_10.bean.BookInfo">
+        <id column="book_id" property="bookId" jdbcType="INTEGER"/>
+        <result column="book_code" property="bookCode" jdbcType="VARCHAR"/>
+        <result column="book_name" property="bookName" jdbcType="VARCHAR"/>
+        <result column="book_type" property="bookType" jdbcType="INTEGER"/>
+        <result column="book_author" property="bookAuthor" jdbcType="INTEGER"/>
+        <result column="publish_press" property="publishPress" jdbcType="VARCHAR"/>
+        <result column="publish_date" property="publishDate" jdbcType="DATE"/>
+        <result column="is_borrow" property="isBorrow" jdbcType="CHAR"/>
+        <result column="createdBy" property="createdby" jdbcType="VARCHAR"/>
+        <result column="creation_time" property="creationTime" jdbcType="DATE"/>
+        <result column="last_updatetime" property="lastUpdatetime" jdbcType="DATE"/>
+    </resultMap>
+
+    <resultMap id="ResultMap" type="com.example.test_10.model.QueryBookInfoModel">
+        <result column="book_code" property="bookCode" jdbcType="VARCHAR"/>
+        <result column="book_name" property="bookName" jdbcType="VARCHAR"/>
+        <result column="book_type" property="bookType" jdbcType="INTEGER"/>
+        <result column="book_author" property="bookAuthor" jdbcType="INTEGER"/>
+        <result column="publish_press" property="publishPress" jdbcType="VARCHAR"/>
+        <result column="is_borrow" property="isBorrow" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    book_id, book_code, book_name, book_type, book_author, publish_press, publish_date,
+    is_borrow, createdBy, creation_time, last_updatetime
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from book_info
+        where book_id = #{bookId,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryBookInfoList" resultMap="ResultMap" >
+        select
+        book_code,book_type,book_name,book_author,publish_press,is_borrow
+        from book_info
+        <where>
+            <if test="bookTypeList !=null and bookTypeList.size() !=0">
+                and book_type in
+                <foreach collection="bookTypeList" open="(" close=")" index="index" item="item" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="isBorrowList != null and isBorrowList.size() !=0">
+                and is_borrow in
+                <foreach collection="isBorrowList" open="(" close=")" index="index" item="item" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="keyword !=null and keyword !=''">
+                and book_name like "%"#{keyword}"%"
+            </if>
+        </where>
+        order by creation_time desc,book_id
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book_info
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.example.test_10.bean.BookInfo">
+    insert into book_info (book_id, book_code, book_name, 
+      book_type, book_author, publish_press,
+      publish_date, is_borrow, createdBy,
+      creation_time, last_updatetime)
+    values (#{bookId,jdbcType=INTEGER}, #{bookCode,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, 
+      #{bookType,jdbcType=INTEGER}, #{bookAuthor,jdbcType=INTEGER}, #{publishPress,jdbcType=VARCHAR}, 
+      #{publishDate,jdbcType=DATE}, #{isBorrow,jdbcType=CHAR}, #{createdby,jdbcType=VARCHAR}, 
+      #{creationTime,jdbcType=DATE}, #{lastUpdatetime,jdbcType=DATE})
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.test_10.bean.BookInfo">
+        insert into book_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookId != null">
+                book_id,
+            </if>
+            <if test="bookCode != null">
+                book_code,
+            </if>
+            <if test="bookName != null">
+                book_name,
+            </if>
+            <if test="bookType != null">
+                book_type,
+            </if>
+            <if test="bookAuthor != null">
+                book_author,
+            </if>
+            <if test="publishPress != null">
+                publish_press,
+            </if>
+            <if test="publishDate != null">
+                publish_date,
+            </if>
+            <if test="isBorrow != null">
+                is_borrow,
+            </if>
+            <if test="createdby != null">
+                createdBy,
+            </if>
+            <if test="creationTime != null">
+                creation_time,
+            </if>
+            <if test="lastUpdatetime != null">
+                last_updatetime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bookId != null">
+                #{bookId,jdbcType=INTEGER},
+            </if>
+            <if test="bookCode != null">
+                #{bookCode,jdbcType=VARCHAR},
+            </if>
+            <if test="bookName != null">
+                #{bookName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookType != null">
+                #{bookType,jdbcType=INTEGER},
+            </if>
+            <if test="bookAuthor != null">
+                #{bookAuthor,jdbcType=INTEGER},
+            </if>
+            <if test="publishPress != null">
+                #{publishPress,jdbcType=VARCHAR},
+            </if>
+            <if test="publishDate != null">
+                #{publishDate,jdbcType=DATE},
+            </if>
+            <if test="isBorrow != null">
+                #{isBorrow,jdbcType=CHAR},
+            </if>
+            <if test="createdby != null">
+                #{createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="creationTime != null">
+                #{creationTime,jdbcType=DATE},
+            </if>
+            <if test="lastUpdatetime != null">
+                #{lastUpdatetime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.test_10.bean.BookInfo">
+        update book_info
+        <set>
+            <if test="bookCode != null">
+                book_code = #{bookCode,jdbcType=VARCHAR},
+            </if>
+            <if test="bookName != null">
+                book_name = #{bookName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookType != null">
+                book_type = #{bookType,jdbcType=INTEGER},
+            </if>
+            <if test="bookAuthor != null">
+                book_author = #{bookAuthor,jdbcType=INTEGER},
+            </if>
+            <if test="publishPress != null">
+                publish_press = #{publishPress,jdbcType=VARCHAR},
+            </if>
+            <if test="publishDate != null">
+                publish_date = #{publishDate,jdbcType=DATE},
+            </if>
+            <if test="isBorrow != null">
+                is_borrow = #{isBorrow,jdbcType=CHAR},
+            </if>
+            <if test="createdby != null">
+                createdBy = #{createdby,jdbcType=VARCHAR},
+            </if>
+            <if test="creationTime != null">
+                creation_time = #{creationTime,jdbcType=DATE},
+            </if>
+            <if test="lastUpdatetime != null">
+                last_updatetime = #{lastUpdatetime,jdbcType=DATE},
+            </if>
+        </set>
+        where book_id = #{bookId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.test_10.bean.BookInfo">
+    update book_info
+    set book_code = #{bookCode,jdbcType=VARCHAR},
+      book_name = #{bookName,jdbcType=VARCHAR},
+      book_type = #{bookType,jdbcType=INTEGER},
+      book_author = #{bookAuthor,jdbcType=INTEGER},
+      publish_press = #{publishPress,jdbcType=VARCHAR},
+      publish_date = #{publishDate,jdbcType=DATE},
+      is_borrow = #{isBorrow,jdbcType=CHAR},
+      createdBy = #{createdby,jdbcType=VARCHAR},
+      creation_time = #{creationTime,jdbcType=DATE},
+      last_updatetime = #{lastUpdatetime,jdbcType=DATE}
+    where book_id = #{bookId,jdbcType=INTEGER}
+  </update>
+</mapper>

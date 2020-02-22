@@ -1,10 +1,4 @@
-package com.example.demo.configure;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-
+package com.example.configure;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -14,6 +8,10 @@ import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.mybatis.generator.internal.DefaultShellCallback;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CustomCommentGenerator extends DefaultCommentGenerator {

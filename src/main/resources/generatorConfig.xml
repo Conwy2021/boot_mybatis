@@ -8,7 +8,7 @@
         <property name="javaFileEncoding" value="UTF-8"/>
 
         <!--取消mybatis自带的注释  -->
-        <commentGenerator type="com.example.demo.configure.CustomCommentGenerator">
+        <commentGenerator type="com.example.configure.CustomCommentGenerator">
 
             <property name="suppressDate" value="false"/>
 
@@ -18,9 +18,9 @@
             <property name="trimStrings" value="true" />
         </commentGenerator>
 
-
+<!--        注意改数据库名字，账号，密码-->
         <jdbcConnection
-                connectionURL="jdbc:mysql://localhost:3306/sdudent?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;useSSL=false"
+                connectionURL="jdbc:mysql://localhost:3306/test_ten?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;useSSL=false"
                 driverClass="com.mysql.jdbc.Driver" password="root" userId="root">
             <!--  针对oracle数据库  -->
 
@@ -30,23 +30,30 @@
 
         </jdbcConnection>
 
-
+<!--       注意 改路径-->
         <!-- java bean生成的路径 -->
-        <javaModelGenerator targetPackage="com.example.demo.bean"
+        <javaModelGenerator targetPackage="com.example.test_10.bean"
                             targetProject="src\main\java"/>
 
         <!-- java mapper.xml配置文件的路径 -->
-        <sqlMapGenerator targetPackage="com.example.demo.mapper"
+        <sqlMapGenerator targetPackage="com.example.test_10.mapper"
                          targetProject="src\main\java"/>
         <!-- java 接口路径 -->
         <javaClientGenerator
-                targetPackage="com.example.demo.mapper" targetProject="src\main\java"
+                targetPackage="com.example.test_10.mapper" targetProject="src\main\java"
                 type="XMLMAPPER"/>
 
-
-        <table  tableName="student" enableCountByExample="false"
+<!--注意改表名-->
+        <table  tableName="invitation" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
+            <!-- 可以选择覆盖列 -->
+            <!-- <columnOverride column="???" property="???" /> -->
+        </table>
+
+        <table  tableName="reply_detail" enableCountByExample="false"
+                enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false">
             <!-- 可以选择覆盖列 -->
             <!-- <columnOverride column="???" property="???" /> -->
         </table>

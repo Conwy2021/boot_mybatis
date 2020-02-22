@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.alibaba.druid.support.spring.stat.SpringStatUtils;
+import com.example.DemoApplication;
 import com.example.demo.Enum.DemoEnum;
 import com.example.demo.Enum.YNEnum;
 import com.example.demo.Static.Num;
@@ -8,16 +8,20 @@ import com.example.demo.bean.Emp;
 import com.example.demo.bean.EmpQueryFrom;
 import com.example.demo.controller.Controller;
 import com.example.demo.mapper.EmpMapper;
+import com.example.test_10.bean.Users;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.BoundHashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import javax.lang.model.element.NestingKind;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
@@ -25,6 +29,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DemoApplicationTests {
 
+    @Autowired
+    private RedisTemplate redisTemplate; //在MyRedisConfig文件中配置了redisTemplate的序列化之后， 客户端也能正确显示键值对了
 
     @Resource
     private EmpMapper empMapper;
@@ -32,6 +38,37 @@ public class DemoApplicationTests {
     @Resource
     private Controller controller;
 
+    /**
+     *redis测试
+     */
+    @Test
+    public void testRedis(){
+        //存值
+        redisTemplate.opsForValue().set("9527", "周星驰",10, TimeUnit.SECONDS);
+        //是否有值
+        Boolean isExist = redisTemplate.hasKey("9527");
+        System.out.println("是否存在key=9527..."+isExist);
+        //取值
+        System.out.println(redisTemplate.opsForValue().get("9527"));
+        Map<String, Object> map = new HashMap<>();
+        for (int i=0; i<10; i++){
+            Users Users = new Users();
+            Users.setUserId(i);
+            Users.setUserCode(String.format("测试%d", i));
+            Users.setEmail(String.valueOf(i));
+            Users.setPassword(String.valueOf(i));
+            Users.setGender("1");
+            Users.setLastLogintime(new Date());
+            Users.setRegisterTime(new Date());
+            map.put(String.valueOf(i),Users);
+        }
+        redisTemplate.opsForHash().putAll("测试", map);
+        BoundHashOperations hashOps = redisTemplate.boundHashOps("测试");
+        Map map1 = hashOps.entries();
+        System.out.println(map1);
+    }
+    
+    
     /**
      * @Author:LiuKangwei
      * @Return:void
@@ -46,9 +83,10 @@ public class DemoApplicationTests {
     @Test
     public void testDemo7() {
         String s = new String("a|a");
-        StringUtils.split(s,"|");
-        System.out.println(s);
+        String[] split = StringUtils.split(s, "|");
+        System.out.println(split);
     }
+
 
     @Test
     public void testDemo6() {
