@@ -3,10 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.Static.Num;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -94,4 +91,20 @@ public class TestController {
         return map;
     }
 
+    @PostMapping(value ="/rizhi")
+    public void rizhi(@RequestBody String a){
+
+        log.info("a is {}",a);
+    }
+    @GetMapping (value ="/rizhi2")
+    public void rizhi2( String a){
+
+        log.info("a is {}",a);
+    }
+
+    @PutMapping(value ="/rizhi3")
+    public void rizhi3(@RequestBody String a){
+
+        log.info("a is {}",a);
+    }
 }
