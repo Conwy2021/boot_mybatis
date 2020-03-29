@@ -10,4 +10,7 @@ public interface ILoginService {
     String login(String name,String password);
 
     String addUser(String name,String password,String yespassword,String sex);
+    String addUser2(String name,String password,String yespassword,String sex);
+
+
 }

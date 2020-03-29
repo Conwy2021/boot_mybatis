@@ -48,9 +48,36 @@ public class LoginServiceImp implements ILoginService {
         users.setLastLogintime(new Date());
 
         int insert = usersMapper.insert(users);
+        System.out.println("insert is "+insert);
         if(insert==0){
             return "注册失败";
         }
         return "注册成功";
+    }
+
+    @Override
+    public String addUser2(String name, String password, String yespassword, String sex) {
+
+        if(password.compareTo(yespassword)!=0){
+            return "两次密码不一致2";
+        }
+        if(sex.isEmpty()){
+            return "请选择性别2";
+        }
+        Users users = new Users();
+        users.setUserCode(name);
+        users.setEmail("");
+        users.setGender(sex);
+        users.setPassword(password);
+        users.setRegisterTime(new Date());
+        users.setLastLogintime(new Date());
+
+        int insert = usersMapper.insert(users);
+        System.out.println("insert2 is "+insert);
+        if(insert==0){
+            return "注册失败2";
+        }
+        return "注册成功2";
+
     }
 }
