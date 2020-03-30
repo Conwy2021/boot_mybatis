@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Author:LiuKangwei
  * @Date:2020/3/29 21:38
- * @Description:
+ * @Description: 测试回滚 机制
  */
 @RestController
 @Slf4j
