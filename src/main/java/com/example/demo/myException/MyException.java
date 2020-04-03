@@ -11,17 +11,19 @@ public class MyException extends   RuntimeException{
     private static final long serialVersionUID = 1L;
 
     public MyException(String code, String msg) {
+        super(msg);//貌似这样也可以
         this.code = code;
         this.msg = msg;
+
     }
 
-    public MyException(String msg) {
+   /* public MyException(String msg) {//手动生成 ctrl + o(英文)
         super(msg);
-    }
+    }*/
     //默认构造函数会自已生成
-    public MyException() {
+    /*public MyException() {
         super();
-    }
+    }*/
     private String code;
     private String msg;
 

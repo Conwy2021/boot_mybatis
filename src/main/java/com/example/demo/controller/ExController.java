@@ -83,7 +83,7 @@ public class ExController {
     @GetMapping("/ex5")//这里也看出自定义异常类,关于构造函数的
     public String ex5(){//测试 getmessage()方法 会在异常栈打出时显示异常信息.
 
-        throw new MyException("ex5异常");
+        throw new MyException("ex5异常","ex5异常");
 
     }
 }
