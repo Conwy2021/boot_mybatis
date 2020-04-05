@@ -4,7 +4,7 @@ import com.example.demo.bean.Emp;
 import com.example.demo.bean.OneToManyInsertFrom;
 import com.example.demo.mapper.EmpMapper;
 import com.example.demo.service.InterfaceService;
-import com.sun.tools.javac.util.Log;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
