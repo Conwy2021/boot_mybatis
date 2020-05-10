@@ -1,8 +1,10 @@
 package com.example.demo;
 
+
 import org.junit.Test;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -62,5 +64,76 @@ public class FileReadingTest {
 
     }
 
+
+    @Test
+    public void test67(){
+
+        for (int i=0;i<10;i++){
+            System.out.println(i);
+        }
+
+        System.out.println("---------------");
+        for(int a=10;a>0;a--){
+            System.out.println(a);
+        }
+
+    }
+
+    @Test
+    public void test81() {
+        String a = new String("a");
+
+
+        int i = a.hashCode();
+        System.out.println(i);
+
+        String b="a";
+        int i1 = b.hashCode();
+        System.out.println(i1);
+
+        String c =new String("a");
+        System.out.println(c.hashCode());
+
+    }
+
+    @Test
+    public void test98(){
+        File file = new File("D:/youarebest/hello");
+        boolean mkdir = file.mkdir();
+        System.out.println(mkdir);
+
+
+    }
+
+
+    @Test
+    public void test109() throws IOException {
+        File file = new File("D:/youarebest/hello2/hello2.txt");
+        //boolean mkdir = file.mkdir();//这是创建目录
+        boolean newFile = file.createNewFile();//这是创建文件
+        boolean directory = file.isDirectory();
+        boolean file1 = file.isFile();
+        //System.out.println(mkdir);
+
+
+        System.out.println(newFile);
+        System.out.println(directory);
+        System.out.println(file1);
+
+
+    }
+
+    @Test
+    public ArrayList<String> test126(){
+        ArrayList<String> list = new ArrayList<>();
+
+        if (list.size()>0){
+            list.add("1");
+        }else {
+            list.add("2");
+        }
+
+        return list;
+    }
 
 }
