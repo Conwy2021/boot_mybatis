@@ -244,4 +244,21 @@ public class DemoApplicationTests {
         List<Emp> emps1 = empMapper.queryEmpByPage(empQueryFrom1);
         System.out.println("关键字" + emps1);
     }
+
+    @Test
+    public void test249(){
+        int a=2;
+        int b=a;
+        a=3;
+        System.out.println(a);
+
+        String c = "kk";
+        //String d=c;
+        System.out.println(c.hashCode()); //改变的是引用 实际对象是没有改变的 使用final 和private修饰  一般看到变化都是因为新增了一个对象改变了引用 特例是反射
+        c="kk";
+        System.out.println(c.hashCode());
+        System.out.println(c);
+
+    }
+
 }
