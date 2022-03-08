@@ -1,9 +1,11 @@
 package com.example.fastjson1224;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.parser.Feature;
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -46,4 +48,32 @@ public class FastController {
         private Date birthDay;
         private List<String> qqList;
     }
+
+
+    @PostMapping(value = "/json2",produces="application/json;charset=UTF-8")
+    public JSONObject json2(@RequestBody String body){
+        // JSONObject obj = JSON.parseObject(data, Feature.SupportNonPublicField); // 当使用 TemplatesImpl的时候用这个
+        JSONObject parse = JSON.parseObject(body, Feature.SupportNonPublicField);
+        JSONObject result = new JSONObject();
+        result.put("code", 200);
+        result.put("message", "success");
+        result.put("data", "Hello " + parse.get("name"));
+
+
+        return result;
+    }
+
+    @PostMapping(value = "/json3",produces="application/json;charset=UTF-8")
+    public JSONObject json3(@RequestBody String body){
+        // JSONObject obj = JSON.parseObject(data, Feature.SupportNonPublicField); // 当使用 TemplatesImpl的时候用这个
+        JSONObject parse = JSON.parseObject(body);
+        JSONObject result = new JSONObject();
+        result.put("code", 200);
+        result.put("message", "success");
+        result.put("data", "Hello " + parse.get("name"));
+
+
+        return result;
+    }
 }
+
