@@ -75,5 +75,19 @@ public class FastController {
 
         return result;
     }
+
+
+    @PostMapping(value = "/json4",produces="application/json;charset=UTF-8")
+    public JSONObject json4(@RequestBody String body){
+        // JSONObject obj = JSON.parseObject(data, Feature.SupportNonPublicField); // 当使用 TemplatesImpl的时候用这个
+        JSONObject parse = JSON.parseObject(body);
+        JSONObject result = new JSONObject();
+        result.put("code", 200);
+        result.put("message", "success");
+        result.put("data", "Hello " + parse.get("name"));
+
+
+        return result;
+    }
 }
 

