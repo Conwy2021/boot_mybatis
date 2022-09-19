@@ -74,6 +74,22 @@
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-pool2</artifactId>
       </dependency>
+
+      <dependency>
+        <groupId>io.nuls.v2</groupId>
+        <artifactId>sdk4j-jdk8</artifactId>
+        <version>1.1.17.RELEASE</version>
+      </dependency>
+      <dependency>
+        <groupId>io.nuls.sdk</groupId>
+        <artifactId>sdk-contract-vm</artifactId>
+        <version>LATEST</version>
+      </dependency>
+      <dependency>
+        <groupId>io.nuls.v2</groupId>
+        <artifactId>off-smartcontract-api</artifactId>
+        <version>LATEST</version>
+      </dependency>
     </dependencies>
 
 
