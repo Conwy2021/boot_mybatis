@@ -1,5 +1,3 @@
-package com.example.demo;
-
 import io.nuls.base.signture.SignatureUtil;
 import io.nuls.core.crypto.ECKey;
 import lombok.extern.slf4j.Slf4j;
@@ -82,9 +80,9 @@ public class DemoException {
         byte[] bytes = hexTobytes(privateKeyHex);
         byte[] privateKey = bytes;// 私钥
         ECKey ecKey = ECKey.fromPrivate(new BigInteger(1, privateKey));
-        byte[] signBytes = SignatureUtil.signDigest(data, ecKey).serialize();// 签名数据
+        byte[] signBytes = SignatureUtil.signDigest(data, ecKey).getSignBytes();// 签名数据
         String bytesToHex = bytesToHex(signBytes);
-        System.out.println(bytesToHex);// string 类型的签名数据 463044022100BBF57788C259EA317FA28E9035ACEF23273256D3E1F65CB48BA978308EFA5A5E021F723579724E2B6FB6CD2C3D85508A5A00B52EA9F5B3BD3C1176C9EFCACC1CD1
+        System.out.println(bytesToHex);// string 类型的签名数据 3044022100BBF57788C259EA317FA28E9035ACEF23273256D3E1F65CB48BA978308EFA5A5E021F723579724E2B6FB6CD2C3D85508A5A00B52EA9F5B3BD3C1176C9EFCACC1CD1
         //公钥为0232bdaf6573319eba3b433ed88d6d4b0d06ea3ad9a504596fe967a2dbf95fc07c
 
     }
@@ -94,6 +92,7 @@ public class DemoException {
         System.out.println(abc);
         byte[] bytes = hexTobytes(abc);
         System.out.println(Arrays.toString(bytes));
+
 
     }
 

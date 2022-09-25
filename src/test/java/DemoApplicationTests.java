@@ -1,5 +1,3 @@
-package com.example.demo;
-
 import com.example.DemoApplication;
 import com.example.demo.Enum.DemoEnum;
 import com.example.demo.Enum.YNEnum;
